@@ -1,0 +1,11 @@
+cat > .gitignore << 'EOF'
+# macOS
+.DS_Store
+
+# secrets
+*.pem
+id_rsa
+id_ed25519
+*.key
+.env
+EOF
