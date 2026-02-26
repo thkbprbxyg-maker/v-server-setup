@@ -35,11 +35,19 @@ The server is hardened by disabling password authentication and enabling SSH key
 
 Steps:
 
-1. Generate an SSH key locally (if not already existing).
-2. Copy the public key to the server.
-3. Add the public key to `~/.ssh/authorized_keys`.
+1. Generate an SSH key locally (if not already existing):
+```bash
+ssh-keygen -t ed25519
+```
+2. Copy the public key to the server:
+```bash
+ssh-copy-id <user>@<server-ip>
+```
+3. Verify that the key exists on the server:
+```bash
+ ssh <user>@<server-ip> "cat ~/.ssh/authorized_keys"
+```
 4. Verify the login via:
-
 ```bash
 ssh <user>@<server-ip>
 ```
@@ -54,14 +62,14 @@ To improve security, password authentication is disabled:
 sudo nano /etc/ssh/sshd_config
 ```
 
-2.Modified the following settings:
+2. Modify the following settings:
 
 ```bash
 PasswordAuthentication no
 PubkeyAuthentication yes
 ```
 
-3.Restarted SSH service:
+3. Restart SSH service:
 
 ```bash
 sudo systemctl restart ssh
@@ -77,14 +85,14 @@ sudo apt update
 sudo apt install nginx
 ```
 
-Service was started and enabled:
+Start and enabl the service:
 
 ```bash
 sudo systemctl enable nginx
 sudo systemctl start nginx
 ```
 
-The installation was verified by accessing the server IP in a browser.
+The installation can be verified by accessing the server IP in a browser.
 
 ## Git Configuration
 
@@ -94,7 +102,7 @@ Install and configure Git on the server:
 sudo apt install git
 ```
 
-Configured global user settings:
+Configure global user settings:
 
 ```bash
 git config --global user.name "<Your Name>"
