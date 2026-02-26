@@ -19,9 +19,8 @@ This repository documents the complete setup of a secure Linux V-Server environm
 
 ## Project Goal
 
-The goal of this project was to configure a secure V-Server that can be used for deploying web applications.  
-The server was hardened by disabling password authentication and enabling SSH key-based login.
-
+This project configures a secure V-Server that can be used for deploying web applications.  
+The server is hardened by disabling password authentication and enabling SSH key-based login.
 ---
 
 ## Server Environment
@@ -34,21 +33,22 @@ The server was hardened by disabling password authentication and enabling SSH ke
 
 ## SSH Key Configuration
 
-Steps performed:
+Steps:
 
-1. Generated an SSH key locally (if not already existing).
-2. Copied the public key to the server.
-3. Added the public key to `~/.ssh/authorized_keys`.
-4. Verified successful login via:
+1. Generate an SSH key locally (if not already existing).
+2. Copy the public key to the server.
+3. Add the public key to `~/.ssh/authorized_keys`.
+4. Verify the login via:
 
 ```bash
-ssh user@server-ip
+ssh <user>@<server-ip>
+```
 
-##Disable Password Authentication
+## Disable Password Authentication
 
-To improve security, password authentication was disabled:
+To improve security, password authentication is disabled:
 
-1.Edited SSH configuration file:
+1. Edit the SSH configuration file:
 
 ```bash
 sudo nano /etc/ssh/sshd_config
@@ -67,10 +67,9 @@ PubkeyAuthentication yes
 sudo systemctl restart ssh
 ```
 
-##Web Server Installation
+## Web Server Installation
 
-A web server was installed to serve applications:
-
+Install a web server to serve applications.
 Example using nginx:
 
 ```bash
@@ -87,9 +86,9 @@ sudo systemctl start nginx
 
 The installation was verified by accessing the server IP in a browser.
 
-##Git Configuration
+## Git Configuration
 
-Git was installed and configured on the server:
+Install and configure Git on the server:
 
 ```bash
 sudo apt install git
@@ -98,17 +97,22 @@ sudo apt install git
 Configured global user settings:
 
 ```bash
-git config --global user.name "Your Name"
-git config --global user.email "your@email.com"
+git config --global user.name "<Your Name>"
+git config --global user.email "<your@email.com>"
 ```
 
-##Security Notes
- - No passwords are stored in this repository.
- - No private SSH keys are included.
- - Only documentation of the setup process is provided.
+## Security Notes
 
+- No passwords are stored in this repository.
+- No private SSH keys are included.
+- Only public key authentication is used.
+- Password login is disabled on the server.
+- This repository contains documentation only.
 
+---
 
+## Checklist PDF
 
+The original checklist is included in this repository:
 
-
+- [Checklist PDF](docs/checklist-v-server.pdf)
